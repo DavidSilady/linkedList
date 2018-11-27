@@ -26,7 +26,7 @@ void fread_lines(FILE *f_p, char line[LINE_NUM][MAX_LINE_LENGTH]);
 void read_lines(char line[LINE_NUM][MAX_LINE_LENGTH]);
 void fill_node(struct car_list *car_current,char line[LINE_NUM][MAX_LINE_LENGTH]);
 void add(struct car_list **car_current);
-void add_node(struct car_list **car_current);
+void add_node(struct car_list **car_current, struct car_list **car_new);
 
 void print_all(struct car_list **car_first);
 void print_node(struct car_list *car_current);
@@ -61,42 +61,37 @@ int main(int argc, char **argv) {
 
 void add(struct car_list **car_first) {
 	int position = 0, i = 0;
-	struct car_list **car_current;
-	car_current = car_first;
+	struct car_list *car_current = *car_first;
+	struct car_list *car_new = *car_first;
 	scanf("%d", &position);
 	
-	for (i = 0; i < position; i++) {
+	while (car_new->next != NULL) {
+		printf("%p | %p\n", car_new, *car_first);
+		car_new = car_new->next;
+	}
+	alloc_next(&car_new);
+	
+	for (i = 0; i < position - 1; i++) {
 		printf("%d\n", i);
-		print_node(*car_current);
-		if ((*car_current)->next == NULL) {
+		//print_node(car_current);
+		if ((car_current)->next == NULL) {
 			break;
 		}
-		*car_current = (*car_current)->next;
+		car_current = car_current->next;
 	}
-	add_node(car_current);
-	print_node(*car_current);
+	add_node(&car_current, &car_new);
+	print_node(car_current);
 }
 
-void add_node(struct car_list **car_current) {
-	struct car_list **car_temp;
-	
-	
-	
-	
-	/*char line[LINE_NUM][MAX_LINE_LENGTH];
-	
-	car_temp = *car_current;
-	*car_current = (*car_current)->prev;
-	(*car_current)->next = NULL;
-	alloc_next(car_current);
+void add_node(struct car_list **car_current, struct car_list **car_new) {
+	char line[LINE_NUM][MAX_LINE_LENGTH];
 	read_lines(line);
-	fill_node(*car_current, line);
-	(*car_current)->next = car_temp;
-	(*car_current)->prev->next = *car_current;
-	car_temp->prev = *car_current;
-	 */
-	 
-	 
+	fill_node(*car_new, line);
+	(*car_new)->next = *car_current;
+	(*car_new)->prev->next = NULL;
+	(*car_new)->prev = (*car_current)->prev;
+	(*car_current)->prev->next = *car_new;
+	(*car_current)->prev = *car_new;
 }
 
 void print_all(struct car_list **car_first) {
@@ -158,6 +153,7 @@ void alloc_next(struct car_list **car_current) {
 	(*car_current)->next = malloc(sizeof(struct car_list));
 	(*car_current)->next->prev = *car_current;
 	*car_current = (*car_current)->next;
+	(*car_current)->next = NULL;
 }
 
 void fill_node(struct car_list *car_current, char line[LINE_NUM][MAX_LINE_LENGTH]) {
@@ -229,3 +225,11 @@ void free_node(struct car_list **car_current) {
 	(*car_current)->next->prev = (*car_current)->prev;
 	free(*car_current);
 }
+/*
+bicykel
+Honda
+Zavadska 14 Kovarce
+12
+2001
+Ma koleso
+*/
