@@ -87,7 +87,9 @@ void add_node(struct car_list **car_current, struct car_list **car_new) {
 	char line[LINE_NUM][MAX_LINE_LENGTH];
 	read_lines(line);
 	fill_node(*car_new, line);
-	(*car_new)->next = *car_current;
+	if (*car_new != *car_current)
+		(*car_new)->next = *car_current;
+	
 	(*car_new)->prev->next = NULL;
 	(*car_new)->prev = (*car_current)->prev;
 	(*car_current)->prev->next = *car_new;
