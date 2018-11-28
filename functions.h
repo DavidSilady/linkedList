@@ -4,6 +4,9 @@
 #define LINE_NUM 7
 #define MAX_LINE_LENGTH 200
 
+#include <stdio.h>
+/*^ used for the FILE type ^ */
+
 struct car_list {
 	char category[50];
 	char manufacturer[50];

@@ -1,10 +1,7 @@
-#include "functions.h"
-#include <stdio.h>
+#include <functions.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
-
 
 void delete_nodes(struct car_list **car_first);
 void open(FILE *f_p, struct car_list **car_first, struct car_list **car_current, int *entryCount);
