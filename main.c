@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define LINE_NUM 7
 #define MAX_LINE_LENGTH 200
@@ -18,6 +19,8 @@ struct car_list {
 
 void free_all(struct car_list **car_first);
 void free_node(struct car_list **car_current);
+
+void read_line(char *line);
 
 void open(FILE *f_p, struct car_list **car_first, struct car_list **car_current, int *entryCount);
 
@@ -64,9 +67,28 @@ int main(int argc, char **argv) {
 }
 
 void delete_nodes(struct car_list **car_first) {
+	struct car_list *car_current = *car_first;
+	char deletion[MAX_LINE_LENGTH];
+	read_line(deletion);
 	
-	
-	
+	while (car_current != NULL) {
+		if (found_substring) {
+			
+		}
+	} 
+}
+
+int found_substring(char *haystack, char *needle) {
+	if (strstr(s_toupper(car_current->manufacturer), s_toupper(deletion)) != NULL) {
+		return 1;
+	}
+	return 0;
+}
+
+char *s_toupper(char *line) {
+	while (line[i] != '\0') {
+		line[i] = toupper(line[i]);
+	}
 }
 
 void add(struct car_list **car_first) {
@@ -215,6 +237,7 @@ void read_line(char *line) {
 	while ((line[i] = getchar()) != '\n') {
 		i++;
 	}
+	line[i][strcspn(line[i], "\n")] = 0;
 	return;
 }
 
@@ -223,7 +246,6 @@ void read_lines(char line[LINE_NUM][MAX_LINE_LENGTH]) {
 	scanf("%*c");
 	for (i = 1; i < LINE_NUM; i++) {
 		read_line(line[i]);
-		line[i][strcspn(line[i], "\n")] = 0;
 	}
 	return;
 }
@@ -243,11 +265,11 @@ int countEntries(FILE *f_p) {
 }
 
 void free_all(struct car_list **car_first) {
-	struct car_list **car_temp = car_first;
+	struct car_list **car_next = car_first;
 	while (*car_first != NULL) {
-		*car_temp = (*car_first)->next;
+		*car_next = (*car_first)->next;
 		free(*car_first);
-		*car_first = *car_temp;
+		*car_first = *car_next;
 	}
 }
 
