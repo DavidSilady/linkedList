@@ -121,18 +121,21 @@ void find(struct car_list **car_first) {
 void delete_nodes(struct car_list **car_first) {
 	struct car_list *car_current = *car_first;
 	char deletion[MAX_LINE_LENGTH];
+	int num_deletions = 0;
 	scanf("%*c");
 	read_line(deletion);
 	
 	while (car_current != NULL) {
 		if (found_substring(car_current->manufacturer, deletion)) {
+			num_deletions++;
 			if (car_current == *car_first) {
 				*car_first = car_current->next;
 			}
 			free_node(&car_current);
 		}
 		car_current = car_current->next;
-	} 
+	}
+	printf("Vymazalo sa %d zaznamov.\n", num_deletions);
 }
 
 int found_substring(char *haystack, char *needle) {
@@ -214,7 +217,7 @@ void print_all(struct car_list **car_first) {
 }
 
 void open(FILE *f_p, struct car_list **car_first, struct car_list **car_current, int *entryCount) {
-	char file_name[] = "car_list2.txt";
+	char file_name[] = "auta.txt";
 	int i;
 	char line[LINE_NUM][MAX_LINE_LENGTH];
 	f_p = fopen(file_name, "r");
@@ -282,7 +285,6 @@ void print_node(struct car_list *car_current) {
 	printf("Cena: %d\n", car_current->price);
 	printf("Rok_Vyroby: %d\n", car_current->production_year);
 	printf("Stav_vozidla: %s\n", car_current->condition);
-	printf("\n");
 }
 
 void fread_lines(FILE *f_p, char line[LINE_NUM][MAX_LINE_LENGTH]) {
@@ -340,23 +342,5 @@ void free_node(struct car_list **car_current) {
 		(*car_current)->prev->next = (*car_current)->next;
 	if ((*car_current)->next != NULL)
 		(*car_current)->next->prev = (*car_current)->prev;
-	printf("Deleting:\n");
-	print_node(*car_current);
 	free(*car_current);
 }
-
-/*
-bicykel
-Honda
-Zavadska 14 Kovarce, Jozo Raz
-12
-2001
-nerozprava
-
-Kon
-jaguar
-Zdena Studenkova 15
-158
-1412
-somrak
-*/
