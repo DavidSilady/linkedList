@@ -1,5 +1,12 @@
 #include <main_functions.h>
-
+#include <functions.h>
+#include <struct.h>
+#include <string.h>
+#include <stdlib.h>
+/*
+#define LINE_NUM 7
+#define MAX_LINE_LENGTH 200
+*/
 void add(struct car_list **car_first) {
 	int position = 0, i = 0;
 	char line[LINE_NUM][MAX_LINE_LENGTH];

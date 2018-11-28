@@ -1,4 +1,4 @@
-#ifndef FUNCTIONS_H_INCLUDED
+#ifndef FUNclTabCtrlCTIONS_H_INCLUDED
 #define FUNCTIONS_H_INCLUDED
 
 #define LINE_NUM 7
@@ -6,17 +6,7 @@
 
 #include <stdio.h>
 /*^ used for the FILE type ^ */
-
-struct car_list {
-	char category[50];
-	char manufacturer[50];
-	char seller[100];
-	int price;
-	int production_year;
-	char condition[200];
-	struct car_list *next;
-	struct car_list *prev;
-};
+#include <struct.h>
 
 //Working w/ strings
 char *s_toupper(char const *line);

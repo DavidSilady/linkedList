@@ -1,7 +1,5 @@
 #include <functions.h>
 #include <main_functions.h>
-#include <stdlib.h>
-#include <string.h>
 #include <ctype.h>
 
 

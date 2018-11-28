@@ -1,7 +1,8 @@
-#ifndef FUNCTIONS_H_INCLUDED
-#define FUNCTIONS_H_INCLUDED
+#ifndef MAIN_FUNCTIONS_H_INCLUDED
+#define MAIN_FUNCTIONS_H_INCLUDED
 
-#include <functions.h>
+#include <stdio.h>
+#include <struct.h>
 
 void delete_nodes(struct car_list **car_first);
 void open(FILE *f_p, struct car_list **car_first, struct car_list **car_current, int *entryCount);

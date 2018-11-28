@@ -1,4 +1,5 @@
 #include <functions.h>
+#include <struct.h>
 
 void delete_nodes(struct car_list **car_first) {
 	struct car_list *car_current = *car_first;
