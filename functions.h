@@ -23,7 +23,6 @@ void delete_nodes(struct car_list **car_first);
 void free_node(struct car_list **car_current);
 
 //Printing
-void print_all(struct car_list **car_first);
 void print_node(struct car_list *car_current);
 
 //Alloc
