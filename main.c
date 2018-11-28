@@ -20,8 +20,8 @@ struct car_list {
 void free_all(struct car_list **car_first);
 void free_node(struct car_list **car_current);
 
-char *s_toupper(char *line);
-int found_substring(char *haystack, char *needle);
+char *s_toupper(char const *line);
+int found_substring(char const *haystack, char const *needle);
 
 void read_line(char *line);
 
@@ -72,23 +72,30 @@ int main(int argc, char **argv) {
 void delete_nodes(struct car_list **car_first) {
 	struct car_list *car_current = *car_first;
 	char deletion[MAX_LINE_LENGTH];
+	printf("What to delete: \n");
+	scanf("%*c");
 	read_line(deletion);
 	
 	while (car_current != NULL) {
-		if (found_substring(car_current->manufacturer, deletion)) {
+		if (found_substring(&car_current->manufacturer, &deletion)) {
 			free_node(&car_current);
 		}
+		car_current = car_current->next;
 	} 
 }
 
-int found_substring(char *haystack, char *needle) {
-	if (strstr(s_toupper(haystack), s_toupper(needle)) != NULL) {
+int found_substring(char const **haystack, char const **needle) {
+	char *temp_haystack;
+	temp_haystack = haystack;
+	char temp_needle[MAX_LINE_LENGTH];
+	temp_needle = needle;
+	if (strstr(s_toupper(temp_haystack), s_toupper(temp_needle)) != NULL) {
 		return 1;
 	}
 	return 0;
 }
 
-char *s_toupper(char *line) {
+char *s_toupper(char const *line) {
 	int i = 0, current_letter;
 	while (line[i] != '\0') {
 		current_letter = line[i];
