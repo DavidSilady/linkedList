@@ -27,6 +27,7 @@ void read_lines(char line[LINE_NUM][MAX_LINE_LENGTH]);
 void fill_node(struct car_list *car_current,char line[LINE_NUM][MAX_LINE_LENGTH]);
 void add(struct car_list **car_current);
 void add_node(struct car_list **car_current, struct car_list **car_new);
+void delete_nodes(struct car_list **car_first);
 
 void print_all(struct car_list **car_first);
 void print_node(struct car_list *car_current);
@@ -55,8 +56,17 @@ int main(int argc, char **argv) {
 			case 'k' :
 				free_all(&car_first);
 				return 0;
+			case 'z' :
+				delete_nodes(&car_first);
+				break;
 		}
 	}
+}
+
+void delete_nodes(struct car_list **car_first) {
+	
+	
+	
 }
 
 void add(struct car_list **car_first) {
@@ -200,14 +210,20 @@ void fread_lines(FILE *f_p, char line[LINE_NUM][MAX_LINE_LENGTH]) {
 	return;
 }
 
+void read_line(char *line) {
+	int i = 0;
+	while ((line[i] = getchar()) != '\n') {
+		i++;
+	}
+	return;
+}
+
 void read_lines(char line[LINE_NUM][MAX_LINE_LENGTH]) {
-	int i, j = 0;
+	int i;
 	scanf("%*c");
 	for (i = 1; i < LINE_NUM; i++) {
-		while ((line[i][j] = getchar()) != '\n')
-			j++;
+		read_line(line[i]);
 		line[i][strcspn(line[i], "\n")] = 0;
-		j = 0;
 	}
 	return;
 }
@@ -240,6 +256,7 @@ void free_node(struct car_list **car_current) {
 	(*car_current)->next->prev = (*car_current)->prev;
 	free(*car_current);
 }
+
 /*
 bicykel
 Honda
