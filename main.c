@@ -61,38 +61,51 @@ int main(int argc, char **argv) {
 
 void add(struct car_list **car_first) {
 	int position = 0, i = 0;
+	char line[LINE_NUM][MAX_LINE_LENGTH];
 	struct car_list *car_current = *car_first;
 	struct car_list *car_new = *car_first;
 	scanf("%d", &position);
+	if (position < 1) {
+		return;
+	}
+	
+	if (*car_first == NULL) {
+		printf("Car_first = NULL\n");
+		alloc_first(car_first);
+		read_lines(line);
+		fill_node(*car_first, line);
+		return;
+	}
 	
 	while (car_new->next != NULL) {
-		printf("%p | %p\n", car_new, *car_first);
 		car_new = car_new->next;
 	}
 	alloc_next(&car_new);
-	
+	printf("Alloc. . .\n");
 	for (i = 0; i < position - 1; i++) {
-		printf("%d\n", i);
-		//print_node(car_current);
 		if ((car_current)->next == NULL) {
 			break;
 		}
 		car_current = car_current->next;
 	}
 	add_node(&car_current, &car_new);
-	print_node(car_current);
+	if (position == 1) {
+		*car_first = car_new;
+	}
 }
 
 void add_node(struct car_list **car_current, struct car_list **car_new) {
 	char line[LINE_NUM][MAX_LINE_LENGTH];
 	read_lines(line);
 	fill_node(*car_new, line);
-	if (*car_new != *car_current)
+	if (*car_new != *car_current) {
 		(*car_new)->next = *car_current;
-	
+	}
 	(*car_new)->prev->next = NULL;
 	(*car_new)->prev = (*car_current)->prev;
-	(*car_current)->prev->next = *car_new;
+	if ((*car_new)->prev != NULL) {
+		(*car_current)->prev->next = *car_new;
+	}
 	(*car_current)->prev = *car_new;
 }
 
@@ -233,5 +246,5 @@ Honda
 Zavadska 14 Kovarce
 12
 2001
-Ma koleso
+nerozprava
 */
