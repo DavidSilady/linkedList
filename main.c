@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <functions.h>
 
 #define LINE_NUM 7
 #define MAX_LINE_LENGTH 200
@@ -17,31 +18,14 @@ struct car_list {
 	struct car_list *prev;
 };
 
-void free_all(struct car_list **car_first);
-void free_node(struct car_list **car_current);
 
-char *s_toupper(char const *line);
-int found_substring(char *haystack, char *needle);
 
-void read_line(char *line);
 
 void open(FILE *f_p, struct car_list **car_first, struct car_list **car_current, int *entryCount);
-
-int countEntries(FILE *f_p);
-void fread_lines(FILE *f_p, char line[LINE_NUM][MAX_LINE_LENGTH]);
-void read_lines(char line[LINE_NUM][MAX_LINE_LENGTH]);
-void fill_node(struct car_list *car_current,char line[LINE_NUM][MAX_LINE_LENGTH]);
-void add(struct car_list **car_current);
-void add_node(struct car_list **car_current, struct car_list **car_new);
-void delete_nodes(struct car_list **car_first);
-void find(struct car_list **car_first);
+void add(struct car_list **car_first);
 void update(struct car_list **car_first);
-
-void print_all(struct car_list **car_first);
-void print_node(struct car_list *car_current);
-
-void alloc_first(struct car_list **car_current);
-void alloc_next(struct car_list **car_current);
+void find(struct car_list **car_first);
+void free_all(struct car_list **car_first);
 
 int main(int argc, char **argv) {
 	FILE file_p;
