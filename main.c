@@ -34,6 +34,7 @@ void fill_node(struct car_list *car_current,char line[LINE_NUM][MAX_LINE_LENGTH]
 void add(struct car_list **car_current);
 void add_node(struct car_list **car_current, struct car_list **car_new);
 void delete_nodes(struct car_list **car_first);
+void find(struct car_list **car_first);
 
 void print_all(struct car_list **car_first);
 void print_node(struct car_list *car_current);
@@ -65,8 +66,17 @@ int main(int argc, char **argv) {
 			case 'z' :
 				delete_nodes(&car_first);
 				break;
+			case 'h' :
+				find(&car_first);
 		}
 	}
+}
+
+void find(struct car_list **car_first) {
+	char wanted_manufacturer[MAX_LINE_LENGTH];
+	int max_price;
+	scanf("%*c");
+	read_line(find_manufacturer);
 }
 
 void delete_nodes(struct car_list **car_first) {
@@ -78,6 +88,9 @@ void delete_nodes(struct car_list **car_first) {
 	
 	while (car_current != NULL) {
 		if (found_substring(car_current->manufacturer, deletion)) {
+			if (car_current == *car_first) {
+				*car_first = car_current->next;
+			}
 			free_node(&car_current);
 		}
 		car_current = car_current->next;
@@ -288,8 +301,12 @@ void free_all(struct car_list **car_first) {
 }
 
 void free_node(struct car_list **car_current) {
-	(*car_current)->prev->next = (*car_current)->next;
-	(*car_current)->next->prev = (*car_current)->prev;
+	if ((*car_current)->prev != NULL)
+		(*car_current)->prev->next = (*car_current)->next;
+	if ((*car_current)->next != NULL)
+		(*car_current)->next->prev = (*car_current)->prev;
+	printf("Deleting:\n");
+	print_node(*car_current);
 	free(*car_current);
 }
 
