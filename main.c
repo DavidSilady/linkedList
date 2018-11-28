@@ -20,7 +20,7 @@ struct car_list {
 void free_all(struct car_list **car_first);
 void free_node(struct car_list **car_current);
 
-char *s_toupper(char *line);
+char *s_toupper(char const *line);
 int found_substring(char *haystack, char *needle);
 
 void read_line(char *line);
@@ -73,10 +73,24 @@ int main(int argc, char **argv) {
 }
 
 void find(struct car_list **car_first) {
+	struct car_list *car_current = *car_first;
 	char wanted_manufacturer[MAX_LINE_LENGTH];
-	int max_price;
+	int max_price, index = 1, isFound = 0;
 	scanf("%*c");
-	read_line(find_manufacturer);
+	read_line(wanted_manufacturer);
+	scanf("%d", &max_price);
+	
+	while (car_current != NULL) {
+		if (!(strcmp(s_toupper(wanted_manufacturer), s_toupper(car_current->manufacturer))) && car_current->price <= max_price) {
+			printf("%d.\n", index++);
+			print_node(car_current);
+			isFound = 1;
+		}
+		car_current = car_current->next;
+	}
+	if (!isFound) {
+		printf("V ponuke nie su pozadovane auta.\n");
+	}
 }
 
 void delete_nodes(struct car_list **car_first) {
@@ -97,25 +111,24 @@ void delete_nodes(struct car_list **car_first) {
 	} 
 }
 
-int found_substring(char*haystack, char *needle) {
-	char temp_haystack[MAX_LINE_LENGTH];
-	char temp_needle[MAX_LINE_LENGTH];
-	strcpy(temp_haystack, haystack);
-	strcpy(temp_needle, needle);
-	if (strstr(s_toupper(temp_haystack), s_toupper(temp_needle)) != NULL) {
+int found_substring(char *haystack, char *needle) {
+	if (strstr(s_toupper(haystack), s_toupper(needle)) != NULL) {
 		return 1;
 	}
 	return 0;
 }
 
-char *s_toupper(char *line) {
+char *s_toupper(char const *line) {
+	char *temp_line;
+	temp_line = (char *)calloc(strlen(line), sizeof(char));
+	strcpy(temp_line, line);
 	int i = 0, current_letter;
-	while (line[i] != '\0') {
-		current_letter = line[i];
-		line[i] = toupper(current_letter);
+	while (temp_line[i] != '\0') {
+		current_letter = temp_line[i];
+		temp_line[i] = toupper(current_letter);
 		i++;
 	}
-	return line;
+	return temp_line;
 }
 
 void add(struct car_list **car_first) {
