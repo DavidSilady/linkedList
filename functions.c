@@ -1,9 +1,5 @@
 #include <functions.h>
 
-
-
-
-
 void delete_nodes(struct car_list **car_first) {
 	struct car_list *car_current = *car_first;
 	char deletion[MAX_LINE_LENGTH];
@@ -44,8 +40,6 @@ char *s_toupper(char const *line) {
 	return temp_line;
 }
 
-
-
 void add_node(struct car_list **car_current, struct car_list **car_new) {
 	char line[LINE_NUM][MAX_LINE_LENGTH];
 	read_lines(line);
@@ -60,10 +54,6 @@ void add_node(struct car_list **car_current, struct car_list **car_new) {
 	}
 	(*car_current)->prev = *car_new;
 }
-
-
-
-
 
 void alloc_first(struct car_list **car_current) {
 	*car_current = malloc(sizeof(struct car_list));
@@ -139,8 +129,6 @@ int countEntries(FILE *f_p) {
 	rewind(f_p);
 	return entryCount;
 }
-
-
 
 void free_node(struct car_list **car_current) {
 	if ((*car_current)->prev != NULL)

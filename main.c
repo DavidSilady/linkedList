@@ -1,23 +1,12 @@
+#include "functions.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include <functions.h>
 
-#define LINE_NUM 7
-#define MAX_LINE_LENGTH 200
 
-struct car_list {
-	char category[50];
-	char manufacturer[50];
-	char seller[100];
-	int price;
-	int production_year;
-	char condition[200];
-	struct car_list *next;
-	struct car_list *prev;
-};
 
+void delete_nodes(struct car_list **car_first);
 void open(FILE *f_p, struct car_list **car_first, struct car_list **car_current, int *entryCount);
 void add(struct car_list **car_first);
 void update(struct car_list **car_first);
