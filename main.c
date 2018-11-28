@@ -35,6 +35,7 @@ void add(struct car_list **car_current);
 void add_node(struct car_list **car_current, struct car_list **car_new);
 void delete_nodes(struct car_list **car_first);
 void find(struct car_list **car_first);
+void update(struct car_list **car_first);
 
 void print_all(struct car_list **car_first);
 void print_node(struct car_list *car_current);
@@ -68,8 +69,32 @@ int main(int argc, char **argv) {
 				break;
 			case 'h' :
 				find(&car_first);
+				break;
+			case 'a' :
+				update(&car_first);
 		}
 	}
+}
+
+void update(struct car_list **car_first) {
+	struct car_list *car_current = *car_first;
+	char wanted_manufacturer[MAX_LINE_LENGTH];
+	int production_year, num_changes = 0;
+	scanf("%*c");
+	read_line(wanted_manufacturer);
+	scanf("%d", &production_year);
+	
+	while (car_current != NULL) {
+		if (car_current->production_year == production_year && !strcmp(s_toupper(wanted_manufacturer), s_toupper(car_current->manufacturer))) {
+			num_changes++;
+			car_current->price -= 100;
+			if (car_current->price < 0) {
+				car_current->price = 0;
+			}
+		}
+		car_current = car_current->next;
+	}
+	printf("Aktualizovalo sa %d zaznamov.\n", num_changes);
 }
 
 void find(struct car_list **car_first) {
@@ -96,7 +121,6 @@ void find(struct car_list **car_first) {
 void delete_nodes(struct car_list **car_first) {
 	struct car_list *car_current = *car_first;
 	char deletion[MAX_LINE_LENGTH];
-	printf("What to delete: \n");
 	scanf("%*c");
 	read_line(deletion);
 	
@@ -142,7 +166,6 @@ void add(struct car_list **car_first) {
 	}
 	
 	if (*car_first == NULL) {
-		printf("Car_first = NULL\n");
 		alloc_first(car_first);
 		read_lines(line);
 		fill_node(*car_first, line);
@@ -153,7 +176,6 @@ void add(struct car_list **car_first) {
 		car_new = car_new->next;
 	}
 	alloc_next(&car_new);
-	printf("Alloc. . .\n");
 	for (i = 0; i < position - 1; i++) {
 		if ((car_current)->next == NULL) {
 			break;
@@ -192,7 +214,7 @@ void print_all(struct car_list **car_first) {
 }
 
 void open(FILE *f_p, struct car_list **car_first, struct car_list **car_current, int *entryCount) {
-	char file_name[] = "car_list.txt";
+	char file_name[] = "car_list2.txt";
 	int i;
 	char line[LINE_NUM][MAX_LINE_LENGTH];
 	f_p = fopen(file_name, "r");
@@ -207,11 +229,10 @@ void open(FILE *f_p, struct car_list **car_first, struct car_list **car_current,
 	}
 	
 	*entryCount = countEntries(f_p);
+	printf("Nacitalo sa %d zaznamov.\n", *entryCount);
 	if (*entryCount == 0) {
-		printf("Nacitalo sa 0 zaznamov.\n");
 		return;
 	}
-	printf("Entries: %d\n", *entryCount);
 	
 	alloc_first(car_first);
 	fread_lines(f_p, line);
@@ -226,6 +247,7 @@ void open(FILE *f_p, struct car_list **car_first, struct car_list **car_current,
 	(*car_current)->next = NULL;
 	
 	fclose(f_p);
+	return;
 }
 
 void alloc_first(struct car_list **car_current) {
