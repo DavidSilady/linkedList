@@ -20,8 +20,8 @@ struct car_list {
 void free_all(struct car_list **car_first);
 void free_node(struct car_list **car_current);
 
-char *s_toupper(char const *line);
-int found_substring(char const *haystack, char const *needle);
+char *s_toupper(char *line);
+int found_substring(char *haystack, char *needle);
 
 void read_line(char *line);
 
@@ -77,25 +77,25 @@ void delete_nodes(struct car_list **car_first) {
 	read_line(deletion);
 	
 	while (car_current != NULL) {
-		if (found_substring(&car_current->manufacturer, &deletion)) {
+		if (found_substring(car_current->manufacturer, deletion)) {
 			free_node(&car_current);
 		}
 		car_current = car_current->next;
 	} 
 }
 
-int found_substring(char const **haystack, char const **needle) {
-	char *temp_haystack;
-	temp_haystack = haystack;
+int found_substring(char*haystack, char *needle) {
+	char temp_haystack[MAX_LINE_LENGTH];
 	char temp_needle[MAX_LINE_LENGTH];
-	temp_needle = needle;
+	strcpy(temp_haystack, haystack);
+	strcpy(temp_needle, needle);
 	if (strstr(s_toupper(temp_haystack), s_toupper(temp_needle)) != NULL) {
 		return 1;
 	}
 	return 0;
 }
 
-char *s_toupper(char const *line) {
+char *s_toupper(char *line) {
 	int i = 0, current_letter;
 	while (line[i] != '\0') {
 		current_letter = line[i];
@@ -296,8 +296,15 @@ void free_node(struct car_list **car_current) {
 /*
 bicykel
 Honda
-Zavadska 14 Kovarce
+Zavadska 14 Kovarce, Jozo Raz
 12
 2001
 nerozprava
+
+Kon
+jaguar
+Zdena Studenkova 15
+158
+1412
+somrak
 */
