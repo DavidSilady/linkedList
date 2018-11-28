@@ -20,6 +20,9 @@ struct car_list {
 void free_all(struct car_list **car_first);
 void free_node(struct car_list **car_current);
 
+char *s_toupper(char *line);
+int found_substring(char *haystack, char *needle);
+
 void read_line(char *line);
 
 void open(FILE *f_p, struct car_list **car_first, struct car_list **car_current, int *entryCount);
@@ -72,23 +75,27 @@ void delete_nodes(struct car_list **car_first) {
 	read_line(deletion);
 	
 	while (car_current != NULL) {
-		if (found_substring) {
-			
+		if (found_substring(car_current->manufacturer, deletion)) {
+			free_node(&car_current);
 		}
 	} 
 }
 
 int found_substring(char *haystack, char *needle) {
-	if (strstr(s_toupper(car_current->manufacturer), s_toupper(deletion)) != NULL) {
+	if (strstr(s_toupper(haystack), s_toupper(needle)) != NULL) {
 		return 1;
 	}
 	return 0;
 }
 
 char *s_toupper(char *line) {
+	int i = 0, current_letter;
 	while (line[i] != '\0') {
-		line[i] = toupper(line[i]);
+		current_letter = line[i];
+		line[i] = toupper(current_letter);
+		i++;
 	}
+	return line;
 }
 
 void add(struct car_list **car_first) {
@@ -237,7 +244,7 @@ void read_line(char *line) {
 	while ((line[i] = getchar()) != '\n') {
 		i++;
 	}
-	line[i][strcspn(line[i], "\n")] = 0;
+	line[strcspn(line, "\n")] = 0;
 	return;
 }
 
