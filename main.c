@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
 			case 'p' :
 				add(&car_first);
 				break;
-			case 'k' :
+			case 'k' : //End
 				free_all(&car_first);
 				return 0;
 			case 'z' :

@@ -3,10 +3,28 @@
 #include <struct.h>
 #include <string.h>
 #include <stdlib.h>
-/*
-#define LINE_NUM 7
-#define MAX_LINE_LENGTH 200
-*/
+
+
+void delete_nodes(struct car_list **car_first) {
+	struct car_list *car_current = *car_first;
+	char deletion[MAX_LINE_LENGTH];
+	int num_deletions = 0;
+	scanf("%*c");
+	read_line(deletion);
+	
+	while (car_current != NULL) {
+		if (found_substring(car_current->manufacturer, deletion)) {
+			num_deletions++;
+			if (car_current == *car_first) {
+				*car_first = car_current->next;
+			}
+			free_node(&car_current);
+		}
+		car_current = car_current->next;
+	}
+	printf("Vymazalo sa %d zaznamov.\n", num_deletions);
+}
+
 void add(struct car_list **car_first) {
 	int position = 0, i = 0;
 	char line[LINE_NUM][MAX_LINE_LENGTH];
