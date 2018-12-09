@@ -128,7 +128,8 @@ void print_all(struct car_list **car_first) {
 	}
 }
 
-void open(FILE *f_p, struct car_list **car_first) {
+void open(struct car_list **car_first) {
+	FILE *f_p;
 	struct car_list *car_current = *car_first;
 	char file_name[] = "auta.txt";
 	int entryCount;
