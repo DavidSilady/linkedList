@@ -155,15 +155,15 @@ void open(FILE *f_p, struct car_list **car_first, int *entryCount) {
 	alloc_first(car_first);
 	fread_lines(f_p, line);
 	fill_node(*car_first, line);
-	*car_current = *car_first;
+	car_current = *car_first;
 	
 	for (i = 1; i < *entryCount; i++) {
-		alloc_next(car_current);
+		alloc_next(&car_current);
 		fread_lines(f_p, line);
-		fill_node(*car_current, line);
+		fill_node(car_current, line);
 	}
 	
-	(*car_current)->next = NULL;
+	car_current->next = NULL;
 	
 	fclose(f_p);
 	return;
