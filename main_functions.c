@@ -148,9 +148,15 @@ void open(struct car_list **car_first) {
 		free_all(car_first);
 	}
 	
+	
+	
+	fclose(f_p);
+	return;
+}
+
+void fill_all(FILE *f_p, struct car_list **car_first) {
 	entryCount = countEntries(f_p);
 	printf("Nacitalo sa %d zaznamov.\n", entryCount);
-	
 	if (entryCount == 0) {
 		return;
 	}
@@ -165,9 +171,6 @@ void open(struct car_list **car_first) {
 		fread_lines(f_p, line);
 		fill_node(car_current, line);
 	}
-	
-	fclose(f_p);
-	return;
 }
 
 void free_all(struct car_list **car_first) {
