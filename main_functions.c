@@ -149,29 +149,6 @@ void open(struct car_list **car_first) {
 	return;
 }
 
-void assign_all(FILE *f_p, struct car_list **car_first) {
-	struct car_list *car_current;
-	int entryCount;
-	int i;
-	char line[LINE_NUM][MAX_LINE_LENGTH];
-	
-	entryCount = countEntries(f_p);
-	printf("Nacitalo sa %d zaznamov.\n", entryCount);
-	if (entryCount == 0) {
-		return;
-	}
-	
-	alloc_first(car_first);
-	fread_lines(f_p, line);
-	fill_node(*car_first, line);
-	car_current = *car_first;
-	
-	for (i = 1; i < entryCount; i++) {
-		alloc_next(&car_current);
-		fread_lines(f_p, line);
-		fill_node(car_current, line);
-	}
-}
 
 void free_all(struct car_list **car_first) {
 	struct car_list **car_next = car_first;
