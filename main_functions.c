@@ -166,8 +166,6 @@ void open(struct car_list **car_first) {
 		fill_node(car_current, line);
 	}
 	
-	car_current->next = NULL;
-	
 	fclose(f_p);
 	return;
 }
