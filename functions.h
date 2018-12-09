@@ -7,6 +7,7 @@
 #include <stdio.h>
 /*^ used for the FILE type ^ */
 #include <struct.h>
+#include <string.h>
 
 //Working w/ strings
 char *s_toupper(char const *line);
