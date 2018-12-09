@@ -1,5 +1,8 @@
 #include <functions.h>
 #include <struct.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
 
 
 void assign_all(FILE *f_p, struct car_list **car_first) {
