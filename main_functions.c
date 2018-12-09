@@ -154,7 +154,7 @@ void open(struct car_list **car_first) {
 	return;
 }
 
-void fill_all(FILE *f_p, struct car_list **car_first) {
+void assign_all(FILE *f_p, struct car_list **car_first) {
 	entryCount = countEntries(f_p);
 	printf("Nacitalo sa %d zaznamov.\n", entryCount);
 	if (entryCount == 0) {
