@@ -143,6 +143,7 @@ void open(struct car_list **car_first) {
 	if (*car_first != NULL) {
 		free_all(car_first);
 	}
+	assign_all(f_p, car_first);
 	
 	fclose(f_p);
 	return;
