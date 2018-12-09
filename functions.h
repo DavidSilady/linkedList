@@ -15,6 +15,7 @@ int found_substring(char *haystack, char *needle);
 //Adding/Filling
 void add_node(struct car_list **car_current, struct car_list **car_new);
 void fill_node(struct car_list *car_current,char line[LINE_NUM][MAX_LINE_LENGTH]);
+void assign_all(FILE *f_p, struct car_list **car_first);
 
 //Reading
 	//Read multiple lines
