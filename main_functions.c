@@ -142,6 +142,7 @@ void open(struct car_list **car_first) {
 		printf("Zaznamy neboli nacitane.\n");
 		return;
 	}
+	
 	//If a list already exists, delete it
 	if (*car_first != NULL) {
 		free_all(car_first);
@@ -157,7 +158,6 @@ void open(struct car_list **car_first) {
 	alloc_first(car_first);
 	fread_lines(f_p, line);
 	fill_node(*car_first, line);
-	car_current = *car_first;
 	
 	for (i = 1; i < entryCount; i++) {
 		alloc_next(&car_current);
