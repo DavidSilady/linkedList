@@ -4,16 +4,13 @@
 
 
 int main(int argc, char **argv) {
-	FILE file_p;
 	char input_command;
-	int entryCount = 0;
 	struct car_list *car_first = NULL;
-	struct car_list *car_current = NULL;
 	
 	while ((input_command = getchar())) {
 		switch (input_command) {
 			case 'n' :
-				open(&file_p, &car_first, &car_current, &entryCount);
+				open(&car_first);
 				break;
 			case 'v' :
 				print_all(&car_first);
