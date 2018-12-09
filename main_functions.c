@@ -128,9 +128,10 @@ void print_all(struct car_list **car_first) {
 	}
 }
 
-void open(FILE *f_p, struct car_list **car_first, int *entryCount) {
+void open(FILE *f_p, struct car_list **car_first) {
 	struct car_list *car_current = *car_first;
 	char file_name[] = "auta.txt";
+	int entryCount;
 	int i;
 	char line[LINE_NUM][MAX_LINE_LENGTH];
 	f_p = fopen(file_name, "r");
@@ -145,10 +146,10 @@ void open(FILE *f_p, struct car_list **car_first, int *entryCount) {
 		free_all(car_first);
 	}
 	
-	*entryCount = countEntries(f_p);
-	printf("Nacitalo sa %d zaznamov.\n", *entryCount);
+	entryCount = countEntries(f_p);
+	printf("Nacitalo sa %d zaznamov.\n", entryCount);
 	
-	if (*entryCount == 0) {
+	if (entryCount == 0) {
 		return;
 	}
 	
@@ -157,7 +158,7 @@ void open(FILE *f_p, struct car_list **car_first, int *entryCount) {
 	fill_node(*car_first, line);
 	car_current = *car_first;
 	
-	for (i = 1; i < *entryCount; i++) {
+	for (i = 1; i < entryCount; i++) {
 		alloc_next(&car_current);
 		fread_lines(f_p, line);
 		fill_node(car_current, line);
