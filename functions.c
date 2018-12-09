@@ -52,6 +52,7 @@ void alloc_first(struct car_list **car_current) {
 		printf("Insufficient memory.\n");
 	}
 	(*car_current)->prev = NULL;
+	(*car_current)->next = NULL;
 }
 
 void alloc_next(struct car_list **car_current) {
@@ -133,5 +134,6 @@ void free_node(struct car_list **car_current) {
 	//If the current node isn't the last, assign 
 	if ((*car_current)->next != NULL)
 		(*car_current)->next->prev = (*car_current)->prev;
+		
 	free(*car_current);
 }

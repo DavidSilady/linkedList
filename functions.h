@@ -1,4 +1,4 @@
-#ifndef FUNclTabCtrlCTIONS_H_INCLUDED
+#ifndef FUNCTIONS_H_INCLUDED
 #define FUNCTIONS_H_INCLUDED
 
 #define LINE_NUM 7
