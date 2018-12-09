@@ -130,8 +130,8 @@ void print_all(struct car_list **car_first) {
 
 void open(struct car_list **car_first) {
 	FILE *f_p;
-	struct car_list *car_current = *car_first;
-	char file_name[] = "auta.txt";
+	struct car_list *car_current;
+	char file_name[] = "car_list.txt";
 	int entryCount;
 	int i;
 	char line[LINE_NUM][MAX_LINE_LENGTH];
@@ -158,6 +158,7 @@ void open(struct car_list **car_first) {
 	alloc_first(car_first);
 	fread_lines(f_p, line);
 	fill_node(*car_first, line);
+	car_current = *car_first;
 	
 	for (i = 1; i < entryCount; i++) {
 		alloc_next(&car_current);
