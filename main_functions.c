@@ -130,11 +130,7 @@ void print_all(struct car_list **car_first) {
 
 void open(struct car_list **car_first) {
 	FILE *f_p;
-	struct car_list *car_current;
 	char file_name[] = "car_list.txt";
-	int entryCount;
-	int i;
-	char line[LINE_NUM][MAX_LINE_LENGTH];
 	f_p = fopen(file_name, "r");
 
 	//Checks whether the file was found.
@@ -148,13 +144,16 @@ void open(struct car_list **car_first) {
 		free_all(car_first);
 	}
 	
-	
-	
 	fclose(f_p);
 	return;
 }
 
 void assign_all(FILE *f_p, struct car_list **car_first) {
+	struct car_list *car_current;
+	int entryCount;
+	int i;
+	char line[LINE_NUM][MAX_LINE_LENGTH];
+	
 	entryCount = countEntries(f_p);
 	printf("Nacitalo sa %d zaznamov.\n", entryCount);
 	if (entryCount == 0) {
