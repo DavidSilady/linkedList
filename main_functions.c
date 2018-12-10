@@ -1,6 +1,6 @@
-#include <main_functions.h>
-#include <functions.h>
-#include <struct.h>
+#include "main_functions.h"
+#include "functions.h"
+#include "struct.h"
 #include <string.h>
 #include <stdlib.h>
 

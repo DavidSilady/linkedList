@@ -1,7 +1,5 @@
-#include <functions.h>
-#include <main_functions.h>
-#include <ctype.h>
-
+#include "functions.h"
+#include "main_functions.h"
 
 int main(int argc, char **argv) {
 	char input_command;

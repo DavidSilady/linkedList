@@ -1,5 +1,5 @@
-#include <functions.h>
-#include <struct.h>
+#include "functions.h"
+#include "struct.h"
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>

@@ -4,10 +4,11 @@
 #define LINE_NUM 7
 #define MAX_LINE_LENGTH 200
 
+#include <string.h>
 #include <stdio.h>
 /*^ used for the FILE type ^ */
-#include <struct.h>
-#include <string.h>
+#include "struct.h"
+
 
 //Working w/ strings
 char *s_toupper(char const *line);
