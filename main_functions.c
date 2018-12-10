@@ -15,6 +15,7 @@ void delete_nodes(struct car_list **car_first) {
 	while (car_current != NULL) {
 		if (found_substring(car_current->manufacturer, deletion)) {
 			num_deletions++;
+			
 			//Shifts the pointer to the first node, if the first node is about to be deleted
 			if (car_current == *car_first) {
 				*car_first = car_current->next;
