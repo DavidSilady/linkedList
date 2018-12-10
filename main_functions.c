@@ -67,7 +67,7 @@ void add(struct car_list **car_first) {
 void find(struct car_list **car_first) {
 	struct car_list *car_current = *car_first;
 	char wanted_manufacturer[MAX_LINE_LENGTH];
-	int max_price, index = 1, isFound = 0;
+	int max_price, index = 1, not_found = 1;
 	
 	scanf("%*c");
 	read_line(wanted_manufacturer);
@@ -79,12 +79,12 @@ void find(struct car_list **car_first) {
 			
 			printf("%d.\n", index++);
 			print_node(car_current);
-			isFound = 1;
+			not_found = 0;
 		}
 		car_current = car_current->next;
 	}
 	
-	if (!isFound) {
+	if (not_found) {
 		printf("V ponuke nie su pozadovane auta.\n");
 	}
 }
