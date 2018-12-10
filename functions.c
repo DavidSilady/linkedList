@@ -155,12 +155,18 @@ int countEntries(FILE *f_p) {
 
 
 void free_node(struct car_list **car_current) {
+	struct car_list *car_temp;
+	
 	//If the current node isn't the first, assign
 	if ((*car_current)->prev != NULL)
 		(*car_current)->prev->next = (*car_current)->next;
 	//If the current node isn't the last, assign 
 	if ((*car_current)->next != NULL)
 		(*car_current)->next->prev = (*car_current)->prev;
-		
-	free(*car_current);
+	
+	//Fixes overflow dependency
+	car_temp = *car_current;
+	*car_current = (*car_current)->next;
+	
+	free(car_temp);
 }

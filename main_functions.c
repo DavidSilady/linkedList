@@ -21,9 +21,8 @@ void delete_nodes(struct car_list **car_first) {
 			}
 			
 			free_node(&car_current);
-			print_node(car_current);
 		}
-		car_current = car_current->next;
+		else car_current = car_current->next;
 	}
 	
 	printf("Vymazalo sa %d zaznamov.\n", num_deletions);
