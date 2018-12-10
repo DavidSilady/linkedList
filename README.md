@@ -3,7 +3,7 @@ mip-ut-14-sitarcik-par-ValiantGinger-4 created by GitHub Classroom
 
 Author: David Silady
 
-Purpose: Simulate a simple car dealership database
+Purpose: Simulate a simple car dealership database with basic functions
 
 Functions:
 
