@@ -40,6 +40,7 @@ int found_substring(char *haystack, char *needle) {
 char *s_toupper(char const *line) {
 	char *temp_line;
 	int i = 0, current_letter;
+	
 	temp_line = (char *)calloc(strlen(line), sizeof(char));
 	strcpy(temp_line, line);
 	
