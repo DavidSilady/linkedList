@@ -13,9 +13,12 @@
 #include "struct.h"
 #
 
+//Finding match
+int find_match(char wanted_manufacturer[MAX_LINE_LENGTH], int max_price, struct car_list *car_current);
+int found_substring(char *haystack, char *needle);
+
 //Working w/ strings
 char *s_toupper(char const *line);
-int found_substring(char *haystack, char *needle);
 
 //Adding/Filling
 void add_node(struct car_list **car_current, struct car_list **car_new);
