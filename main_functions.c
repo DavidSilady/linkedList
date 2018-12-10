@@ -75,7 +75,7 @@ void find(struct car_list **car_first) {
 	
 	while (car_current != NULL) {
 		//Finds the fitting node
-		if (!(strcmp(s_toupper(wanted_manufacturer), s_toupper(car_current->manufacturer))) && car_current->price <= max_price) {
+		if (find_match(wanted_manufacturer, max_price, car_current)) {
 			
 			printf("%d.\n", index++);
 			print_node(car_current);
@@ -88,6 +88,7 @@ void find(struct car_list **car_first) {
 		printf("V ponuke nie su pozadovane auta.\n");
 	}
 }
+
 
 void update(struct car_list **car_first) {
 	struct car_list *car_current = *car_first;

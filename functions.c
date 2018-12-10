@@ -1,6 +1,15 @@
 #include "functions.h"
 
 
+int find_match(char wanted_manufacturer[MAX_LINE_LENGTH], 
+				int max_price,
+				struct car_list *car_current) {
+	if (strcmp(s_toupper(wanted_manufacturer), s_toupper(car_current->manufacturer)) && car_current->price <= max_price) {
+		return 0;
+	}
+	else return 1;
+}
+
 void assign_all(FILE *f_p, struct car_list **car_first) {
 	struct car_list *car_current;
 	int entryCount;
