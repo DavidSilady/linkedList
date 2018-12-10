@@ -67,17 +67,15 @@ void add(struct car_list **car_first) {
 void find(struct car_list **car_first) {
 	struct car_list *car_current = *car_first;
 	char wanted_manufacturer[MAX_LINE_LENGTH];
-	int max_price, index = 1, not_found = 1;
+	int max_price, entry_index = 1, not_found = 1;
 	
 	scanf("%*c");
 	read_line(wanted_manufacturer);
 	scanf("%d", &max_price);
 	
 	while (car_current != NULL) {
-		//Finds the fitting node
 		if (find_match(wanted_manufacturer, max_price, car_current)) {
-			
-			printf("%d.\n", index++);
+			printf("%d.\n", entry_index++);
 			print_node(car_current);
 			not_found = 0;
 		}
