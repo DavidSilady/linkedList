@@ -21,6 +21,7 @@ void delete_nodes(struct car_list **car_first) {
 			}
 			
 			free_node(&car_current);
+			print_node(car_current);
 		}
 		car_current = car_current->next;
 	}
@@ -151,11 +152,11 @@ void open(struct car_list **car_first) {
 
 
 void free_all(struct car_list **car_first) {
-	struct car_list **car_next = car_first;
+	struct car_list *car_next = *car_first;
 	
 	while (*car_first != NULL) {
-		*car_next = (*car_first)->next;
+		car_next = (*car_first)->next;
 		free(*car_first);
-		*car_first = *car_next;
+		*car_first = car_next;
 	}
 }
