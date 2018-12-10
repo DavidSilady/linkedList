@@ -11,7 +11,7 @@ Functions:
 
 "v" -> print all the entries to the screen
 
-"p" -> add one entry to the database:
+"p" -> add one entry to the database
 		
 Followed by the position of the new entry:
 		
@@ -26,19 +26,19 @@ Followed by information about the car:
 			"[production year]"
 			"[condition]"
 			
-"z" -> delete all the cars with manufacturer name containing the entered line (not case sensitive):
+"z" -> delete all the cars with manufacturer name containing the entered line (not case sensitive)
 
 Followed by:
 
 			"[part of the manufacturer name for deletion]"
 			
-"h" -> find and print all the cars with the entered manufacturer name:
+"h" -> find and print all the cars with the entered manufacturer name (not case sensitive)
 
 Followed by:
 
 			"[wanted manufacturer name]"
 			
-"a" -> updates the price of all the cars with the entered manufacturer name and older than entered year
+"a" -> updates the price of all the cars with the entered manufacturer name and older than entered year (not case sensitive)
 
 Followed by:
 
