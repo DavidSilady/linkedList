@@ -7,26 +7,26 @@ int main(int argc, char **argv) {
 	
 	while ((input_command = getchar())) {
 		switch (input_command) {
-			case 'n' :
+			case 'o' :
 				open(&car_first);
 				break;
-			case 'v' :
+			case 'p' :
 				print_all(&car_first);
 				break;
-			case 'p' :
+			case 'a' :
 				add(&car_first);
 				break;
-			case 'k' : //End
-				free_all(&car_first);
-				return 0;
-			case 'z' :
+			case 'd' :
 				delete_nodes(&car_first);
 				break;
 			case 'h' :
 				find(&car_first);
 				break;
-			case 'a' :
+			case 'f' :
 				update(&car_first);
+			case 'k' : //End
+				free_all(&car_first);
+				return 0;
 		}
 	}
 }
