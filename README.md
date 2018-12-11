@@ -17,11 +17,11 @@ Each entry includes information:
 
 Functions:
 
-"open" -> open a text file named "car_list.txt" from the working directory and load entries from it to the database
+"o" -> open a text file named "car_list.txt" from the working directory and load entries from it to the database
 
-"print" -> print all the entries to the screen
+"p" -> print all the entries to the screen
 
-"add" -> add one entry to the database
+"a" -> add one entry to the database
 		
 Followed by the position of the new entry:
 		
@@ -36,23 +36,23 @@ Followed by information about the car:
 			"[production year]"
 			"[condition]"
 			
-"delete" -> delete all the cars with manufacturer name containing the entered line (not case sensitive)
+"d" -> delete all the cars with manufacturer name containing the entered line (not case sensitive)
 
 Followed by:
 
 			"[part of the manufacturer name for deletion]"
 			
-"find" -> find and print all the cars with the entered manufacturer name (not case sensitive)
+"f" -> find and print all the cars with the entered manufacturer name (not case sensitive)
 
 Followed by:
 
 			"[wanted manufacturer name]"
 			
-"update" -> updates the price of all the cars with the entered manufacturer name and older than entered year (not case sensitive)
+"u" -> updates the price of all the cars with the entered manufacturer name and older than entered year (not case sensitive)
 
 Followed by:
 
 			"[wanted manufacturer name]"
 			"[production year]"
 			
-"kill" -> end
+"k" -> end
