@@ -5,6 +5,16 @@ Author: David Silady
 
 Purpose: Simulate a simple car dealership database with basic functions
 
+Each entry includes information:
+
+		1. Type of vehicle
+		2. Manufacturer
+		3. Seller (location)
+		4. Price
+		5. Year of production
+		6. Condition of the vehicle
+
+
 Functions:
 
 "n" -> open a text file named "car_list.txt" from the working directory and load entries from it to the database
@@ -21,7 +31,7 @@ Followed by information about the car:
 
 			"[type]"
 			"[manufacturer]"
-			"[location]"
+			"[seller location]"
 			"[price]"
 			"[production year]"
 			"[condition]"
