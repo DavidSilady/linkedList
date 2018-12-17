@@ -56,3 +56,23 @@ Followed by:
 			"[production year]"
 			
 "k" -> end
+
+
+Refactoring:
+
+	1. open_function 
+		Simplified header - 4 arg. => 2 arg. (Works with local variables instead, now)
+		Removed unnecessary code (duplicates or something a prior function already did)
+		Created new function dedicated to assigning all the data from the opened file for better readability (assign_all)
+	2. header
+		Fixed <> to "" while including local .h files to match the global convention
+		Rearangements for better readability
+	3. find_function
+		Changes to variable names and if statement readability (eg. !isFound => is_not_found)
+		Moved complicated condition to a seperate function find_match for readability
+			if (find_match(manufacturer, production_year, car_current)) { . . .
+		Removing unnecessary comments
+	4. overflow (more of a bugfix)
+		Fixes overflow dependency
+	5. gitignore
+		Ignores .txt files and .exe files
